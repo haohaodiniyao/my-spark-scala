@@ -12,7 +12,9 @@ class MyServerTest extends FunSuite with SparkSessionProvider {
   override def beforeAll(): Unit = {
     param.put("key1","value1")
     param.put("key2","value2")
-    val sparkBuilder = SparkSession.builder().appName(this.getClass.getName).master("local[2]")
+    val sparkBuilder = SparkSession.builder()
+      .appName(this.getClass.getName).master("local[2]")
+      .config("spark.sql.orc.impl", "native")
     thisSpark = sparkBuilder.getOrCreate()
     thisSpark.sparkContext.setLogLevel("WARN")
   }
@@ -25,7 +27,7 @@ class MyServerTest extends FunSuite with SparkSessionProvider {
         |2
         |3""".stripMargin
     )
-    MyServer.run(thisSpark,param.toString)
+    ReadORCTest.run(thisSpark)
   }
 
   override protected def afterAll(): Unit = {

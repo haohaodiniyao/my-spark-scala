@@ -32,7 +32,7 @@
         <scala.version>2.11.8</scala.version>
         <encoding>UTF-8</encoding>
         <maven.compiler.source>1.8</maven.compiler.source>
-        <spark.version>2.3.0</spark.version>
+        <spark.version>2.4.0</spark.version>
         <hadoop.version>2.7.2</hadoop.version>
         <junit.version>4.12</junit.version>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -69,6 +69,11 @@
                 <groupId>org.apache.spark</groupId>
                 <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
                 <version>${spark-streaming-kafka-0-10_2.11.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka_2.11</artifactId>
+                <version>0.10.1.0</version>
             </dependency>
             <dependency>
                 <groupId>io.grpc</groupId>

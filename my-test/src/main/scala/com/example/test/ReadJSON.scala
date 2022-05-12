@@ -1,13 +1,12 @@
 package com.example.test
 
-import com.example.test.ReadJSON.logError
 import org.apache.spark.internal.Logging
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
 /**
   * ParquetAvroWriters.forReflectRecord(MsgData.class)
   */
-object ReadParquet extends Logging{
+object ReadJSON extends Logging{
   def main(args: Array[String]): Unit = {
     if(args.length < 1){
       logError(
@@ -17,8 +16,9 @@ object ReadParquet extends Logging{
       System.exit(1)
     }
     val spark: SparkSession = SparkSession.builder().master("local[1]").appName(this.getClass.getName).getOrCreate()
-    val df1: DataFrame = spark.read.parquet(args(0))
+    val df1: DataFrame = spark.read.json(args(0))
     logWarning("count1 = "+df1.count())
+    df1.show(100,false)
     spark.stop()
   }
 }
